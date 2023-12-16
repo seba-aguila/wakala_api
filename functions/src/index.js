@@ -1,12 +1,14 @@
-import { https } from 'firebase-functions/v2'
-import express from 'express'
-import userRoutes from './routes/userRoutes.js';
+const userRoutes = require('./routes/userRoutes');
+const wakalaRoutes = require('./routes/wakalaRoutes');
+const { https } = require('firebase-functions/v2');
+const express = require('express');
 
 const app = express();
 
 app.use(express.json());
-app.use('/api', userRoutes);
+app.use('/api/usuarios', userRoutes);
+app.use('/api/wakalas', wakalaRoutes);
 
 app.get('/', (req, res) => res.status(200).send('Hey there!'));
 
-export default https.onRequest(app);
+exports.app = https.onRequest(app);
