@@ -1,6 +1,7 @@
 const { admin } = require('../config/firebase');
 
 const createUser = async (req, res) => {
+  // El password debe ser de minimo 6 caracteres
   const { email, password, username } = req.body;
   try {
     await admin.auth().createUser({
@@ -18,10 +19,5 @@ const createUser = async (req, res) => {
     return res.status(500).json("Error al crear usuario");
   }
 }
-
-/*
-auth/uid-already-exists
-auth/email-already-exists
-*/
 
 module.exports = { createUser }
