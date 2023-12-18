@@ -29,6 +29,7 @@ const getWakalas = async (req, res) => {
     wakalasSnapshot.forEach((wakala) => wakalas.push({ id: wakala.id, ...wakala.data() }));
     return res.status(200).json(wakalas);
   } catch (error) {
+    console.log(error);
     return res.status(500).json("Error al obtener wakalas");
   }
 }
